@@ -1,0 +1,37 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Jungle Cruise",
+      "category": "Movie",
+      "genre": "Adventure",
+      "director": "Jaume Collet-Serra",
+      "year": 2021,
+      "imageURL": "/static/img/jungle-cruise.jpeg",
+      "rating": 4,
+      "description": "Dreaming about saving countless lives and having another adventure, the feisty English feminist and doctor of botany, Dr Lily Houghton, embarks on a peril-laden mission to change the world. Along with her fashionable brother, MacGregor, Dr Houghton enlists the help of the arrogant, wisecracking riverboat skipper, Captain Frank Wolff, to guide them through the serpentine Amazon River in La Quila, his swift wooden boat."
+    },
+    {
+      "id": 2,
+      "title": "The Little Mermaid",
+      "category": "Movie",
+      "genre": "Fantasy",
+      "director": "Rob Marshall",
+      "year": 2023,
+      "imageURL": "/static/img/the-little-mermaid.jpg",
+      "rating": 4,
+      "description": "The youngest of King Triton's daughters, Ariel is a beautiful and spirited young mermaid with a thirst for adventure. Longing to find out more about the world beyond the sea, Ariel visits the surface and falls for the dashing Prince Eric. Following her heart, she makes a deal with the evil sea witch, Ursula, to experience life on land."
+    },
+    {
+      "id": 3,
+      "title": "Home Alone",
+      "category": "Movie",
+      "genre": "Comedy",
+      "director": "Chris Columbus",
+      "year": 1990,
+      "imageURL": "/static/img/home-alone.jpeg",
+      "rating": 5,
+      "description": "It is Christmas time and the McCallister family is preparing for a vacation in Paris, France. The next morning, while the rest of the family was in a rush to make it to the airport on time, they completely forgot about Kevin, who now has the house all to himself. Kevin discovers two burglars are about to rob his house and acts quickly to stop them."
+    }
+  ]
+}
