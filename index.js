@@ -1,3 +1,4 @@
+﻿require('./lib/prisma');
 const express = require('express');
 
 const hbsConfig = require('./hbsConfig');
@@ -13,3 +14,4 @@ expressConfig(app);
 app.use(routes);
 
 app.listen(port, () => console.log(`The app is running on http://localhost:${port}...`));
+
