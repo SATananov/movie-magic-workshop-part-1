@@ -54,3 +54,73 @@ input[type=number]::-webkit-outer-spin-button {
   background: rgba(20, 20, 20, 0.8);
   padding: 10px 80px;
 }
+
+
+/* Create cast centered polish */
+#create-cast {
+    min-height: calc(100vh - 160px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.createCastSection {
+    width: 560px;
+    min-height: 430px;
+    display: flex;
+    background-color: #b98291;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
+}
+
+.info-cast {
+    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #706d7d;
+    border-right: 4px solid #252331;
+    color: #252331;
+}
+
+.info-cast h2 {
+    font-size: 18px;
+    line-height: 1.25;
+    text-align: center;
+}
+
+.createCastForm {
+    flex: 1;
+    padding: 24px 30px;
+    text-align: center;
+}
+
+.createCastForm h2 {
+    margin-bottom: 16px;
+}
+
+.createCastForm .noBullet {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.createCastForm .noBullet li {
+    margin-bottom: 12px;
+}
+
+.createCastForm label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.createCastForm .inputFields {
+    width: 220px;
+    height: 28px;
+}
+
+.createCastForm #center-btn {
+    margin-top: 16px;
+}
+/* End create cast centered polish */
