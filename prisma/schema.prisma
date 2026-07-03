@@ -27,6 +27,7 @@ model Cast {
   name     String
   age      Int
   born     String
+  nameInMovie String
   imageUrl String
   movies   MovieCast[]
 
