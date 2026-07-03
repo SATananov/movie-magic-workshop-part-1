@@ -88,8 +88,25 @@ async function create(movieData) {
     return formatMovie(movie);
 }
 
+async function attachCast(movieId, castId) {
+    return prisma.movieCast.upsert({
+        where: {
+            movieId_castId: {
+                movieId: Number(movieId),
+                castId: Number(castId),
+            },
+        },
+        update: {},
+        create: {
+            movieId: Number(movieId),
+            castId: Number(castId),
+        },
+    });
+}
+
 module.exports = {
     getAll,
     getById,
     create,
+    attachCast,
 };

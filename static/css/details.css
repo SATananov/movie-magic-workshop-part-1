@@ -255,3 +255,50 @@ span {
     margin-left: 10px;
 }
 
+
+
+/* Cast cards polish */
+.main-cast-card {
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+    flex-wrap: wrap;
+    margin: 35px auto 60px auto;
+    max-width: 900px;
+}
+
+.cast-card {
+    width: 155px;
+    min-height: 225px;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: #706d7d;
+    color: white;
+    text-align: left;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.25);
+}
+
+.cast-card .card-img {
+    text-align: center;
+}
+
+.cast-card .card-img img {
+    width: 75px;
+    height: 95px;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: #b98291;
+}
+
+.cast-info h1 {
+    font-size: 14px;
+    text-align: center;
+    margin: 8px 0;
+}
+
+.cast-info h3 {
+    font-size: 11px;
+    margin: 4px 0;
+    line-height: 1.25;
+}
+/* End Cast cards polish */

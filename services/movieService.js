@@ -26,8 +26,13 @@ async function create(movieData) {
     return movieRepository.create(normalizedMovieData);
 }
 
+async function attachCast(movieId, castId) {
+    return movieRepository.attachCast(movieId, castId);
+}
+
 module.exports = {
     getAll,
     getById,
     create,
+    attachCast,
 };
