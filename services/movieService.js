@@ -7,7 +7,7 @@ function normalizeMovieData(movieData) {
         genre: movieData.genre?.trim(),
         director: movieData.director?.trim(),
         year: Number(movieData.year),
-        imageURL: movieData.imageURL?.trim(),
+        imageUrl: movieData.imageURL?.trim() || movieData.imageUrl?.trim(),
         rating: Number(movieData.rating),
         description: movieData.description?.trim(),
     };

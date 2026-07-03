@@ -1,76 +1,91 @@
-const fs = require('fs/promises');
-const path = require('path');
+const prisma = require('../lib/prisma');
 
-const Movie = require('../models/Movie');
-
-const dbPath = path.resolve(__dirname, '../config/database.json');
-
-async function readDatabase() {
-    const content = await fs.readFile(dbPath, 'utf-8');
-    return JSON.parse(content);
-}
-
-async function writeDatabase(database) {
-    const content = JSON.stringify(database, null, 2);
-    await fs.writeFile(dbPath, content, 'utf-8');
-}
-
-function getNextId(movies) {
-    if (movies.length === 0) {
-        return 1;
+function formatMovie(movie) {
+    if (!movie) {
+        return null;
     }
 
-    return Math.max(...movies.map(movie => Number(movie.id))) + 1;
+    return {
+        ...movie,
+        imageURL: movie.imageUrl,
+        casts: movie.casts ? movie.casts.map(movieCast => movieCast.cast) : [],
+    };
 }
 
 async function getAll(filter = {}) {
-    const database = await readDatabase();
-    let movies = database.movies;
+    const title = (filter.title || '').trim();
+    const genre = (filter.genre || '').trim();
+    const year = String(filter.year || '').trim();
 
-    const title = (filter.title || '').trim().toLowerCase();
-    const genre = (filter.genre || '').trim().toLowerCase();
-    const year = String(filter.year || '').trim().toLowerCase();
+    const where = {};
 
     if (title) {
-        movies = movies.filter(movie => movie.title.toLowerCase().includes(title));
+        where.title = {
+            contains: title,
+            mode: 'insensitive',
+        };
     }
 
     if (genre) {
-        movies = movies.filter(movie => movie.genre.toLowerCase().includes(genre));
+        where.genre = {
+            contains: genre,
+            mode: 'insensitive',
+        };
     }
+
+    let movies = await prisma.movie.findMany({
+        where,
+        include: {
+            casts: {
+                include: {
+                    cast: true,
+                },
+            },
+        },
+        orderBy: {
+            id: 'desc',
+        },
+    });
 
     if (year) {
-        movies = movies.filter(movie => String(movie.year).toLowerCase().includes(year));
+        movies = movies.filter(movie => String(movie.year).includes(year));
     }
 
-    return movies;
+    return movies.map(formatMovie);
 }
 
 async function getById(id) {
-    const database = await readDatabase();
-    return database.movies.find(movie => Number(movie.id) === Number(id));
+    const movie = await prisma.movie.findUnique({
+        where: {
+            id: Number(id),
+        },
+        include: {
+            casts: {
+                include: {
+                    cast: true,
+                },
+            },
+        },
+    });
+
+    return formatMovie(movie);
 }
 
 async function create(movieData) {
-    const database = await readDatabase();
-    const nextId = getNextId(database.movies);
+    const movie = await prisma.movie.create({
+        data: {
+            title: movieData.title,
+            category: movieData.category,
+            genre: movieData.genre,
+            director: movieData.director,
+            year: movieData.year,
+            rating: movieData.rating,
+            description: movieData.description,
+            imageUrl: movieData.imageUrl,
+        },
+    });
 
-    const movie = new Movie(
-        nextId,
-        movieData.title,
-        movieData.category,
-        movieData.genre,
-        movieData.director,
-        movieData.year,
-        movieData.imageURL,
-        movieData.rating,
-        movieData.description
-    );
-
-    database.movies.push(movie);
-    await writeDatabase(database);
-
-    return movie;
+    return formatMovie(movie);
 }
 
 module.exports = {
